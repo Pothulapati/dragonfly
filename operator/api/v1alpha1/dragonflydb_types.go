@@ -28,14 +28,26 @@ type DragonflyDbSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of DragonflyDb. Edit dragonflydb_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Replicas is the number of replicas of the database
+	Replicas int32 `json:"spec,omitempty"`
+	// Image is the image of the database to use
+	Image string `json:"image,omitempty"`
+
+	// (Optional) Database container resource limits. Any container limits
+	// can be specified.
+	// Default: (not specified)
+	// +optional
+	// +kubebuilder:validation:Optional
+	// Resources *corev1.ResourceRequirements `json:"resources,omitempty"`
 }
 
 // DragonflyDbStatus defines the observed state of DragonflyDb
 type DragonflyDbStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
+	// Created is true if the database resources have been created
+	Created bool `json:"created,omitempty"`
 }
 
 //+kubebuilder:object:root=true

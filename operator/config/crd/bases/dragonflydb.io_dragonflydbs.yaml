@@ -35,13 +35,20 @@ spec:
           spec:
             description: DragonflyDbSpec defines the desired state of DragonflyDb
             properties:
-              foo:
-                description: Foo is an example field of DragonflyDb. Edit dragonflydb_types.go
-                  to remove/update
+              image:
+                description: Image is the image of the database to use
                 type: string
+              spec:
+                description: Replicas is the number of replicas of the database
+                format: int32
+                type: integer
             type: object
           status:
             description: DragonflyDbStatus defines the observed state of DragonflyDb
+            properties:
+              created:
+                description: Created is true if the database resources have been created
+                type: boolean
             type: object
         type: object
     served: true
